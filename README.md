@@ -1,5 +1,10 @@
 # EarlyEdge Feed
 
+<img width="286" height="354" alt="image" src="https://github.com/user-attachments/assets/839cb7d1-7e35-44ef-922b-2e5e17e815de" />
+<img width="282" height="172" alt="image" src="https://github.com/user-attachments/assets/6364b92d-3bca-412a-9ede-e01d74f24d01" />
+
+
+
 A lightweight internal dashboard for startup founders to post quick updates, track progress across categories, and share context with cofounders — without the overhead of a full project management tool.
 
 Built as a freelance MVP assessment for Tenacity, simulating a real client brief from EarlyEdge, a startup studio that helps first-time founders launch MVPs.
