@@ -52,6 +52,12 @@ export function usePosts() {
     })
   }
 
+  function togglePin(id) {
+    setPosts(prev =>
+      prev.map(p => p.id === id ? { ...p, pinned: !p.pinned } : p)
+    )
+  }
+
   function getDigest() {
     const tags = ['Product', 'Research', 'Marketing', 'Team']
     const digest = {}
@@ -61,5 +67,5 @@ export function usePosts() {
     return digest
   }
 
-  return { posts, addPost, getDigest }
+  return { posts, addPost, togglePin, getDigest }
 }
