@@ -7,7 +7,7 @@ import UpdateFeed from './components/UpdateFeed'
 import DailyDigest from './components/DailyDigest'
 
 function App() {
-  const { posts, addPost, getDigest } = usePosts()
+  const { posts, addPost, togglePin, getDigest } = usePosts()
   const { authorName, authorInitials, authorColor, showWelcome, saveAuthor } = useAuthor()
   const [view, setView] = useState('feed')
 
@@ -76,7 +76,7 @@ function App() {
       {view === 'feed' && (
         <>
           <PostComposer authorName={authorName} onAddPost={addPost} />
-          <UpdateFeed posts={posts} />
+          <UpdateFeed posts={posts} onTogglePin={togglePin} />
         </>
       )}
 
