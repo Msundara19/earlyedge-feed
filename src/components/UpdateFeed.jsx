@@ -3,18 +3,20 @@ import UpdateCard from './UpdateCard'
 
 const TAGS = ['All', 'Product', 'Research', 'Marketing', 'Team']
 
-export default function UpdateFeed({ posts }) {
+export default function UpdateFeed({ posts, onTogglePin }) {
   const [activeTag, setActiveTag] = useState('All')
   const [search, setSearch] = useState('')
 
-  const filtered = posts.filter(post => {
-    const matchesTag = activeTag === 'All' || post.tag === activeTag
-    const matchesSearch =
-      search.trim() === '' ||
-      post.title.toLowerCase().includes(search.toLowerCase()) ||
-      post.description.toLowerCase().includes(search.toLowerCase())
-    return matchesTag && matchesSearch
-  })
+  const filtered = posts
+    .filter(post => {
+      const matchesTag = activeTag === 'All' || post.tag === activeTag
+      const matchesSearch =
+        search.trim() === '' ||
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        post.description.toLowerCase().includes(search.toLowerCase())
+      return matchesTag && matchesSearch
+    })
+    .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0))
 
   return (
     <div>
@@ -59,7 +61,21 @@ export default function UpdateFeed({ posts }) {
           </p>
         </div>
       ) : (
-        filtered.map(post => <UpdateCard key={post.id} post={post} />)
+        <>
+          {filtered.some(p => p.pinned) && (
+            <div className="pinned-section-label">📌 Pinned</div>
+          )}
+          {filtered.map((post, i) => {
+            const prevPinned = i > 0 && filtered[i - 1].pinned
+            const showDivider = prevPinned && !post.pinned
+            return (
+              <div key={post.id}>
+                {showDivider && <div className="pinned-divider" />}
+                <UpdateCard post={post} onTogglePin={onTogglePin} />
+              </div>
+            )
+          })}
+        </>
       )}
     </div>
   )
