@@ -657,3 +657,58 @@ body {
     display: none;
   }
 }
+/* ── Pin / Star ── */
+.pin-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 2px 4px;
+  border-radius: 6px;
+  opacity: 0.35;
+  transition: opacity 0.15s, transform 0.15s;
+  line-height: 1;
+}
+
+.pin-btn:hover {
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+.pin-btn.pinned {
+  opacity: 1;
+}
+
+.update-card.pinned {
+  border-left-color: #f59e0b;
+  background: linear-gradient(to right, #fffbeb 0%, var(--surface) 60%);
+  box-shadow: 0 2px 16px rgba(245, 158, 11, 0.15);
+}
+
+.pinned-banner {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #b45309;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pinned-section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #b45309;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding: 0 2px;
+}
+
+.pinned-divider {
+  border: none;
+  border-top: 1.5px dashed var(--border);
+  margin: 16px 0;
+}
