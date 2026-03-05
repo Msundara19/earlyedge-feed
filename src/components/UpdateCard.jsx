@@ -12,8 +12,9 @@ function timeAgo(isoString) {
   return `${days}d ago`
 }
 
-export default function UpdateCard({ post }) {
+export default function UpdateCard({ post, onTogglePin }) {
   const {
+    id,
     title,
     description,
     tag,
@@ -24,16 +25,30 @@ export default function UpdateCard({ post }) {
     authorInitials,
     authorColor,
     createdAt,
+    pinned,
   } = post
 
   return (
-    <div className="update-card" data-tag={tag}>
+    <div className={`update-card${pinned ? ' pinned' : ''}`} data-tag={tag}>
+
+      {pinned && (
+        <div className="pinned-banner">
+          <span>📌</span> Pinned
+        </div>
+      )}
 
       <div className="card-header">
         <div className="card-title">{title}</div>
         <div className="card-badges">
           {mood && <span className="mood-badge">{mood}</span>}
           <span className="tag-badge" data-tag={tag}>{tag}</span>
+          <button
+            className={`pin-btn${pinned ? ' pinned' : ''}`}
+            onClick={() => onTogglePin(id)}
+            title={pinned ? 'Unpin post' : 'Pin post'}
+          >
+            {pinned ? '📌' : '📍'}
+          </button>
         </div>
       </div>
 
